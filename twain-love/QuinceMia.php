@@ -68,13 +68,13 @@
                             <span class="icon-bar"></span>
                         </button>
                         <h1 class="site-logo">
-                            <a class="navbar-brand" href="QuinceMia.html">Mia Elizabeth</a>
+                            <a class="navbar-brand" href="QuinceMia.php">Mia Elizabeth</a>
                         </h1>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
                         <button class="close-navbar"><i class="ti-close"></i></button>
                         <ul class="nav navbar-nav">
-                            <li class="current-menu-item"><a href="QuinceMia.html">Inicio</a></li>
+                            <li class="current-menu-item"><a href="QuinceMia.php">Inicio</a></li>
                             <li><a href="#event">Evento</a></li>
                             <li><a href="#rsvp">Asistencia</a></li>
                         </ul>
@@ -313,6 +313,38 @@
 </div>
 <!-- RSVP Area End -->
 
+<!-- Confirmation Area Start -->
+<div id="confirmation" style="display: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                <div class="rsvp-wrap">
+                    <div class="col-12">
+                        <div class="section-title section-title-2 text-center">
+                            <h2>Confirmación de asistencia</h2>
+                        </div>
+                    </div>
+                    <div class="confirmation-section">
+                        <div class="confirmation-row">
+                            <div class="col-12 text-center">
+                                <h4 id="cantidadAsistentes"></h4>
+                                <h4 id="valorTotal"></h4>
+                                <p class="confirmation-text">Por favor, realizar el pago a la siguiente cuenta:</p>
+                                <p class="payment-details"><strong>Cuenta: Mercado Pago</strong></p>
+                                <p class="payment-details"><strong>Titular: Gustavo Javier Zehnder</strong></p>
+                                <p class="payment-details"><strong>CUIL/CUIT: 20-24499108-5</strong></p>
+                                <p class="payment-details"><strong>Alias: gus040375</strong></p>
+                                <p class="payment-details"><strong>CVU: 0000003100038286501995</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirmation Area End -->
+
 <style>
     .input-field {
         width: 100%;
@@ -349,6 +381,26 @@
 
     .row-flex > div {
         flex: 1;
+    }
+
+    .section-title-2 {
+        margin-bottom: 30px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .submit {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 30px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .submit:hover {
+        background-color: #0056b3;
     }
 </style>
 
@@ -439,7 +491,8 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
     let successMessage = document.getElementById("success");
     let telefono = document.querySelectorAll("input[type='tel']"); // Todos los teléfonos ingresados
     let asistentes = [];
-    
+    let totalValor = 0;
+
     // Resetear los mensajes de error y éxito
     successMessage.style.display = "none";
 
@@ -467,7 +520,7 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
         let edad = document.querySelector(`select[name='edad${index+1}']`).value;
         let asistencia = document.querySelector(`select[name='asistencia${index+1}']`).value;
         let valor = asistencia === "Brindis" ? (edad === "Mayor" ? 31000 : 31000) : (edad === "Mayor" ? 62000 : 31000);
-        
+
         asistentes.push({
             nombre: nombre,
             telefono: tel.value,
@@ -475,18 +528,17 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
             asistencia: asistencia,
             valor: valor
         });
+
+        totalValor += valor;
     });
 
-    // Si todo está bien, mostrar loader y simular un envío exitoso
-    document.getElementById("loader").style.display = "inline-block";
+    // Mostrar confirmación con los valores
+    document.getElementById("rsvp").style.display = "none"; // Ocultar el área de RSVP
+    document.getElementById("confirmation").style.display = "block"; // Mostrar confirmación
 
-    setTimeout(function() {
-        // Se oculta el loader
-        document.getElementById("loader").style.display = "none";
-
-        // Mostrar mensaje de éxito
-        successMessage.style.display = "block";
-    }, 1500);
+    // Mostrar la cantidad de asistentes y valor total
+    document.getElementById("cantidadAsistentes").textContent = `Cantidad de asistentes: ${asistentes.length}`;
+    document.getElementById("valorTotal").textContent = `Valor total de las tarjetas: $${totalValor.toLocaleString()}`;
 });
 </script>
 
@@ -529,7 +581,6 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
 </section>
         
         
-       <!-- start site-footer -->
 <!-- start site-footer -->
 <footer class="site-footer site-footer-2">
     <div class="container">

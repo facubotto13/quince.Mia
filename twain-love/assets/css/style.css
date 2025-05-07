@@ -234,8 +234,8 @@ button:focus {
 
 .music-box button {
   background: rgba(0, 0, 0, 0.1);
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   line-height: 43px;
   font-size: 18px;
   font-size: 1.125rem;
@@ -1473,7 +1473,6 @@ div#preloader {
 @media screen and (min-width: 992px) {
   .header-style-1 {
     width: 100%;
-    position: absolute;
     left: 0;
     top: 0;
     z-index: 9999;
@@ -1496,7 +1495,7 @@ div#preloader {
 --------------------------------------------------------------*/
 .hero-slider {
   width: 100%;
-  height: 850px;
+  height: 795px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1790,7 +1789,7 @@ div#preloader {
 #0.5	footer
 --------------------------------------------------------------*/
 .site-footer {
-  background: url("../images/imgMia/3.jpg") center center/cover no-repeat local;
+  background: url("../images/rsvp/img-1.jpg") center center/cover no-repeat local;
   text-align: center;
   padding: 235px 0 250px;
   position: relative;
@@ -2106,7 +2105,7 @@ couple-area end
 =============================*/
 
 .count-down-area {
-    background: url(../images/imgMia/1.jpg) no-repeat center center / cover;
+    background: url(../images/counter/1.jpg) no-repeat center center / cover;
     background-attachment: fixed;
     position: relative;
 }
@@ -3002,11 +3001,19 @@ animation: spineer 2s infinite;
 }
 
 .rsvp-area {
-    background: url(../images/imgMia/2.jpg) no-repeat center center / cover;
+    background: url(../images/rsvp/img-1.jpg) no-repeat center center / cover;
     padding: 150px 0;
     position: relative;
     background-attachment: fixed;
     z-index: 1;
+}
+
+#confirmation {
+  background: url(../images/rsvp/img-1.jpg) no-repeat center center / cover;
+  padding: 150px 0;
+  position: relative;
+  background-attachment: fixed;
+  z-index: 1;
 }
 
 .rsvp-area:before {
@@ -3020,6 +3027,7 @@ animation: spineer 2s infinite;
     opacity: .8;
     z-index: -1;
 }
+
 .rsvp-area.rsvp-2:before {
     background: #9a8c40;
 }
@@ -4184,3 +4192,51 @@ option {
   transform: scale(1.1);
 }
 
+.confirmation-section {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.confirmation-section .confirmation-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.confirmation-section .confirmation-text {
+  color: #000000; /* Texto en color negro */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.confirmation-section .confirmation-text strong {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.confirmation-section h4 {
+  color: #000000; /* Texto en color negro */
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.confirmation-section p {
+  color: #000000; /* Texto en color negro */
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.confirmation-section .payment-details {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
