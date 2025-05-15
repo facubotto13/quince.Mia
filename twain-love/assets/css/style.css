@@ -1537,14 +1537,15 @@ div#preloader {
   left: 0;
   top: 0;
   z-index: 1;
-  background-size: contain; /* Asegura que la imagen no se recorte */
-  background-repeat: no-repeat; /* Evita que se repita si la imagen no llena el contenedor */
-  background-position: center; /* Centra la imagen */
+  background-size: cover; /* LLENA todo el área, aunque recorte */
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: left;
 }
+
 
 .hero-slider .slide-inner .slide-content{
   background: rgba(133,170,186,.8);
@@ -1789,7 +1790,7 @@ div#preloader {
 #0.5	footer
 --------------------------------------------------------------*/
 .site-footer {
-  background: url("../images/rsvp/img-1.jpg") center center/cover no-repeat local;
+  background: url("../images/fotosMia/DSC_2454-09.jpg") center 10% / cover no-repeat local;
   text-align: center;
   padding: 235px 0 250px;
   position: relative;
@@ -1831,7 +1832,7 @@ div#preloader {
 
 .site-footer:before {
   content: "";
-  background-color: rgba(0,0,0,.7);
+  background-color: rgba(0,0,0,.2);
   width: 100%;
   height: 100%;
   position: absolute;
@@ -2105,7 +2106,8 @@ couple-area end
 =============================*/
 
 .count-down-area {
-    background: url(../images/counter/1.jpg) no-repeat center center / cover;
+    background: url(../images/fotosMia/DSC_2383-09.jpg) no-repeat center 10%;
+    background-size: cover;
     background-attachment: fixed;
     position: relative;
 }
@@ -2116,7 +2118,7 @@ couple-area end
     height: 100%;
     position: absolute;
     background: #000;
-    opacity: .7;
+    opacity: .5;
     left: 0;
     top: 0;
 }
@@ -3001,15 +3003,16 @@ animation: spineer 2s infinite;
 }
 
 .rsvp-area {
-    background: url(../images/rsvp/img-1.jpg) no-repeat center center / cover;
+    background: url(../images/fotosMia/DSC_2401-09.jpg) no-repeat center 5% / cover;
     padding: 150px 0;
     position: relative;
     background-attachment: fixed;
     z-index: 1;
 }
 
+
 #confirmation {
-  background: url(../images/rsvp/img-1.jpg) no-repeat center center / cover;
+  background: url(../images/fotosMia/DSC_2401-09.jpg) no-repeat center 5% / cover;
   padding: 150px 0;
   position: relative;
   background-attachment: fixed;
@@ -3024,7 +3027,7 @@ animation: spineer 2s infinite;
     width: 100%;
     height: 100%;
     background: #000;
-    opacity: .8;
+    opacity: .4;
     z-index: -1;
 }
 
@@ -3033,7 +3036,7 @@ animation: spineer 2s infinite;
 }
 
 .rsvp-wrap {
-    background: rgba(133,170,186,.8);
+    background: rgba(133,170,186,.7);
     padding: 70px;
     border-top-left-radius: 90px;
     border-bottom-right-radius: 90px;

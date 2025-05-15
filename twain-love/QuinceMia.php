@@ -90,7 +90,7 @@
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="slide-inner slide-bg-image" data-background="assets/images/slider/slide-3.jpg">
+                        <div class="slide-inner slide-bg-image" data-background="assets/images/fotosMia/DSC_2723-09.jpg">
                             <div class="container">
                                 <div class="slide-content">
                                     <div data-swiper-parallax="200" class="slide-subtitle">
@@ -109,7 +109,7 @@
                     </div> <!-- end swiper-slide -->
 
                     <div class="swiper-slide">
-                        <div class="slide-inner slide-bg-image" data-background="assets/images/slider/slide-4.jpg">
+                        <div class="slide-inner slide-bg-image" data-background="assets/images/fotosMia/DSC_2484-09.jpg">
                             <div class="container">
                                 <div class="slide-content">
                                     <div data-swiper-parallax="200" class="slide-subtitle">
@@ -128,7 +128,26 @@
                     </div> <!-- end swiper-slide -->
 
                     <div class="swiper-slide">
-                        <div class="slide-inner slide-bg-image" data-background="assets/images/slider/1.jpg">
+                        <div class="slide-inner slide-bg-image" data-background="assets/images/fotosMia/DSC_2385-09.jpg">
+                            <div class="container">
+                                <div class="slide-content">
+                                    <div data-swiper-parallax="200" class="slide-subtitle">
+                                        <h4>Mia Elizabeth</h4>
+                                    </div>
+                                    <div data-swiper-parallax="300" class="slide-title">
+                                        <h2>Mis quince años</h2>
+                                    </div>
+                                    <div data-swiper-parallax="400" class="slide-text">
+                                        <p>26 Julio 2025</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div> 
+                        </div> <!-- end slide-inner --> 
+                    </div><!-- end swiper-slide --> 
+
+                    <div class="swiper-slide">
+                        <div class="slide-inner slide-bg-image" data-background="assets/images/fotosMia/DSC_2818-09.jpg">
                             <div class="container">
                                 <div class="slide-content">
                                     <div data-swiper-parallax="200" class="slide-subtitle">
@@ -155,6 +174,12 @@
             </div>
         </section>
         <!-- end of hero slider -->
+
+        <section style="margin-top: 50px;">
+    <div class="section-title text-center">
+        <h2>¡Te espero para compartir mi noche más importante!</h2>
+    </div>
+</section>
 
         
         <!-- start count-down-section -->
@@ -575,35 +600,25 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
 
 
 <section style="margin-top: 50px;">
-    <div class="section-title text-center">
-        <h2>¡Te espero para compartir mi noche más importante!</h2>
-    </div>
+    <br>
 </section>
         
         
 <!-- start site-footer -->
-<footer class="site-footer site-footer-2">
+<footer class="site-footer">
     <div class="container">
         <div class="row">
-            
+            <div class="text">
+                        <h2>¡Muchas gracias!</h2>
+                    </div>
+
             <div class="back-to-top">
                 <a href="#" class="back-to-top-btn"><span><i class="ti-arrow-up"></i></span></a>
             </div>
         </div>
     </div> <!-- end container -->
 </footer>
-<!-- end site-footer -->
 
-<footer>
-    <!-- Fila para el copyright -->
-    <div class="row">
-        <div class="col-12 text-center">
-            <a href="https://solbot.com.ar" target="_blank" class="d-block p-3 text-decoration-none" style="background-color: #f8d7a1; color: #000000; font-weight: 700; font-family: Arial, sans-serif;">
-                <p class="mb-0">© SolBot - Diseño y Desarrollo Web</p>
-            </a>
-        </div>
-    </div>
-</footer>
 
 <a href="https://wa.me/5493492690045" class="whatsapp-float" target="_blank" title="Escribime por WhatsApp">
     <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp">
