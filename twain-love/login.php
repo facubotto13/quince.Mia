@@ -24,5 +24,10 @@ if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true) {
     <input type="password" name="contrasena" placeholder="Contraseña" required><br>
     <button type="submit">Entrar</button>
   </form>
+
+  <!-- Botón Volver -->
+  <form action="./QuinceMia.php" method="get" style="margin-top: 10px;">
+    <button type="submit">Volver</button>
+  </form>
 </body>
 </html>

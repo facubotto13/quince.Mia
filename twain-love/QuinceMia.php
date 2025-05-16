@@ -632,6 +632,9 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
         </div>
     </div> <!-- end container -->
 </footer>
+<footer class ="fondofooter">
+Desarrollado por SolBot
+</footer>
 
 
 <a href="https://wa.me/5493492690045" class="whatsapp-float" target="_blank" title="Escribime por WhatsApp">

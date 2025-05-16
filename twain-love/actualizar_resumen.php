@@ -12,10 +12,11 @@ require_once 'db.php';
 $sql = "SELECT
     COUNT(*) AS cantidad_total,
     SUM(CASE WHEN alimentacion = 'normal' THEN 1 ELSE 0 END) AS cantidad_normal,
-    SUM(CASE WHEN alimentacion = 'vegetariana' THEN 1 ELSE 0 END) AS cantidad_vegetariana,
+    SUM(CASE WHEN alimentacion = 'vegetariano' THEN 1 ELSE 0 END) AS cantidad_vegetariano,
     SUM(CASE WHEN alimentacion = 'vegano' THEN 1 ELSE 0 END) AS cantidad_vegano,
     SUM(CASE WHEN alimentacion = 'celiaco' THEN 1 ELSE 0 END) AS cantidad_celiaco,
-    SUM(CASE WHEN asistencia = 'si' THEN 1 ELSE 0 END) AS cantidad_cena,
+    SUM(CASE WHEN asistencia = 'cena' THEN 1 ELSE 0 END) AS cantidad_cena,
+    SUM(CASE WHEN asistencia = 'brindis' THEN 1 ELSE 0 END) AS cantidad_brindis,
     SUM(valor_tarjeta) AS suma_valores
 FROM asistentes";
 
@@ -28,11 +29,11 @@ if (!$result) {
 $data = $result->fetch_assoc();
 
 // Si cantidad_brindis es diferente, cambia esta línea
-$cantidad_brindis = $data['cantidad_cena'];
+$cantidad_brindis = $data['cantidad_brindis'];
 
 // Usamos INSERT ... ON DUPLICATE KEY UPDATE
 $sql_update = "INSERT INTO resumen_asistentes 
-    (cantidad_cena, cantidad_brindis, cantidad_total, suma_valores, cantidad_normal, cantidad_vegetariana, cantidad_vegano, cantidad_celiaco)
+    (cantidad_cena, cantidad_brindis, cantidad_total, suma_valores, cantidad_normal, cantidad_vegetariano, cantidad_vegano, cantidad_celiaco)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
     cantidad_cena = VALUES(cantidad_cena),
@@ -40,7 +41,7 @@ $sql_update = "INSERT INTO resumen_asistentes
     cantidad_total = VALUES(cantidad_total),
     suma_valores = VALUES(suma_valores),
     cantidad_normal = VALUES(cantidad_normal),
-    cantidad_vegetariana = VALUES(cantidad_vegetariana),
+    cantidad_vegetariano = VALUES(cantidad_vegetariano),
     cantidad_vegano = VALUES(cantidad_vegano),
     cantidad_celiaco = VALUES(cantidad_celiaco)";
 
@@ -57,7 +58,7 @@ $stmt->bind_param(
     $data['cantidad_total'], 
     $data['suma_valores'], 
     $data['cantidad_normal'], 
-    $data['cantidad_vegetariana'], 
+    $data['cantidad_vegetariano'], 
     $data['cantidad_vegano'], 
     $data['cantidad_celiaco']
 );
