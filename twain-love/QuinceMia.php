@@ -494,7 +494,7 @@ document.getElementById("numAsistentes").addEventListener("input", function() {
                 </div>
             </div>
             <div class="col-12">
-                <span class="tarjeta-valor" id="tarjetaValor${i}">Valor de la tarjeta: $62.000</span>
+                <span class="tarjeta-valor" id="tarjetaValor${i}">Valor de la tarjeta: $62.000 - *Informamos que, luego del 16/06, los valores estarán sujetos a un posible aumento.</span>
             </div>
         `;
 
@@ -513,9 +513,9 @@ function actualizarValores() {
             let valorTarjeta = row.querySelector(".tarjeta-valor");
 
             if (asistencia === "Brindis") {
-                valorTarjeta.textContent = "Valor de la tarjeta: $31.000";
+                valorTarjeta.textContent = "Valor de la tarjeta: $31.000 - *Informamos que, luego del 16/06, los valores estarán sujetos a un posible aumento.";
             } else {
-                valorTarjeta.textContent = (edad === "Mayor") ? "Valor de la tarjeta: $62.000" : "Valor de la tarjeta: $31.000";
+                valorTarjeta.textContent = (edad === "Mayor") ? "Valor de la tarjeta: $62.000 - *Informamos que, luego del 16/06, los valores estarán sujetos a un posible aumento." : "Valor de la tarjeta: $31.000 - *Informamos que, luego del 16/06, los valores estarán sujetos a un posible aumento.";
             }
         });
     });
@@ -613,7 +613,7 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
 
 
 
-<section style="margin-top: 50px;">
+<section style="background-color: #f8f8f8" >
     <br>
 </section>
         
@@ -633,7 +633,7 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
     </div> <!-- end container -->
 </footer>
 <footer class ="fondofooter">
-Desarrollado por SolBot
+    © SolBot - Diseño y Desarrollo Web
 </footer>
 
 

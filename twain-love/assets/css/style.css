@@ -474,18 +474,18 @@ button:focus {
 .form input,
 .form textarea,
 .form select {
-  border-color: #bfbfbf;
+  border-color: #fff;
   border-radius: 0;
   outline: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
-  color: #595959;
+  color: #fff;
 }
 
 .form input:focus,
 .form textarea:focus,
 .form select:focus {
-  border-color:#85aaba;
+  border-color:#fff;
   -webkit-box-shadow: 0 0 5px 0 #fde2dd;
   -moz-box-shadow: 0 0 5px 0 #fde2dd;
   -o-box-shadow: 0 0 5px 0 #fde2dd;
@@ -1041,7 +1041,7 @@ div#preloader {
 .site-header .site-logo a {
   font-size: 35px;
   font-size: 2.1875rem;
-  color: #fff;
+  color: #000;
   padding: 9px 15px;
   font-family: 'Great Vibes', cursive;
 }
@@ -1135,7 +1135,7 @@ div#preloader {
 .site-header #navbar > ul li a:hover,
 .site-header #navbar > ul li.current-menu-item a {
   text-decoration: none;
-  color:#85aaba;
+  color:#000;
 }
 
 @media screen and (min-width: 992px) {
@@ -1149,7 +1149,7 @@ div#preloader {
     font-size: 15px;
     font-size: 0.9375rem;
     font-weight: 600;
-    color: #fff;
+    color: #000;
     padding: 40px 14px 35px;
     line-height: 0.9em;
     text-transform: uppercase;
@@ -1511,7 +1511,7 @@ div#preloader {
     z-index: 9999;
   }
   .header-style-1 .navigation {
-    background-color: rgba(0,0,0,.2);
+    background-color: #fff;
   }
 }
 
@@ -1581,9 +1581,9 @@ div#preloader {
 
 
 .hero-slider .slide-inner .slide-content{
-  background: rgba(133,170,186,.8);
-  border-top-right-radius: 80px;
-  border-bottom-left-radius: 80px;
+  background: rgba(133,170,186,.4);
+  border-top-right-radius: 70px;
+  border-bottom-left-radius: 70px;
   -webkit-animation: spineer 2s infinite;
   animation: spineer 2s infinite;
   max-width: 600px;
@@ -1737,7 +1737,7 @@ div#preloader {
  .hero-style-2 .slide-title h2, .hero-style-3 .slide-title h2 {
   font-size: 72px;
   font-size: 4.5rem;
-  font-weight: bold;
+  font-weight: semibold;
   color: #fff;
   font-family: 'Great Vibes', cursive;
 }
@@ -3074,7 +3074,7 @@ animation: spineer 2s infinite;
     border-top-left-radius: 90px;
     border-bottom-right-radius: 90px;
     position: relative;
-    border: 1px solid rgba(255,255,255,.6);
+    border: 1px solid rgba(255, 255, 255, 0.9);
 }
 .rsvp-wrap:before {
     position: absolute;
@@ -3104,7 +3104,7 @@ animation: spineer 2s infinite;
     background: transparent;
     opacity: 1;
     border-radius: 5px;
-    border: 1px solid rgba(255,255,255,.3);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     outline: none;
 }
 
@@ -3126,12 +3126,12 @@ select.form-control:not([size]):not([multiple]) {
     -moz-appearance: none;
     background:transparent url(../images/select-icon.png) no-repeat calc(100% - 15px) center;
     position: relative;
-    border: 1px solid rgba(255,255,255,.3);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     outline: none;
 }
 .rsvp-area form input:focus,
 .rsvp-area form textarea:focus{
-    border: 1px solid rgba(255,255,255,.3);
+    border: 1px solid rgba(255, 255, 255, 0.9);
 }
 .contact-textarea {
     width: 100%;
@@ -3142,7 +3142,7 @@ select.form-control:not([size]):not([multiple]) {
     border: none;
     border-radius: 5px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,.3);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     outline: none;
 }
 
@@ -3159,7 +3159,7 @@ select.form-control:not([size]):not([multiple]) {
     border-radius: 5px;
     margin-top: 20px;
     cursor: pointer;
-    border: 1px solid rgba(255,255,255,.3);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
@@ -4275,4 +4275,13 @@ option {
   font-size: 16px;
   color: #333;
   line-height: 1.6;
+}
+
+.fondofooter {
+  background: #85aaba;
+    color: #000; /* texto negro */
+    font-weight: bold; /* negrita */
+    text-align: center; /* centrar el texto */
+    padding: 15px 0; /* espacio interno arriba y abajo */
+    font-family: sans-serif; /* opcional para mejor apariencia */
 }
