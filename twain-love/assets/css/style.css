@@ -107,6 +107,39 @@ button:focus {
   outline: none;
 }
 
+/* Mostrar/ocultar candado según pantalla */
+.lock-icon {
+    cursor: pointer;
+}
+
+/* Para móvil: candado dentro del menú (ya con clase d-md-none se oculta en desktop) */
+.lock-menu-item i {
+    margin-right: 6px;
+}
+
+/* Si no usás Bootstrap, podes agregar: */
+
+/*
+@media (min-width: 768px) {
+    .lock-menu-item {
+        display: none;
+    }
+    .lock-icon {
+        display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    .lock-menu-item {
+        display: block;
+    }
+    .lock-icon {
+        display: none;
+    }
+}
+*/
+
+
 /*--------------------------------------------------------------
 #0.2    Global Elements
 --------------------------------------------------------------*/

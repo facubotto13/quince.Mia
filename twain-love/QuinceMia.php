@@ -58,31 +58,44 @@
 
         <!-- Start header -->
         <header class="site-header header-style-1">
-            <nav class="navigation navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="open-btn">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <h1 class="site-logo">
-                            <a class="navbar-brand" href="QuinceMia.php">Mia Elizabeth</a>
-                        </h1>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
-                        <button class="close-navbar"><i class="ti-close"></i></button>
-                        <ul class="nav navbar-nav">
-                            <li class="current-menu-item"><a href="QuinceMia.php">Inicio</a></li>
-                            <li><a href="#event">Evento</a></li>
-                            <li><a href="#rsvp">Asistencia</a></li>
-                        </ul>
-                    </div><!-- end of nav-collapse -->
-                    <div class="bottom-border"></div>
-                </div><!-- end of container -->
-            </nav>
-        </header>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <nav class="navigation navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="open-btn">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="site-logo">
+                    <a class="navbar-brand" href="QuinceMia.php">Mia Elizabeth</a>
+                </h1>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
+                <button class="close-navbar"><i class="ti-close"></i></button>
+                <ul class="nav navbar-nav">
+                    <li class="current-menu-item"><a href="QuinceMia.php">Inicio</a></li>
+                    <li><a href="#event">Evento</a></li>
+                    <li><a href="#rsvp">Asistencia</a></li>
+                    
+                    <!-- Candado en menú hamburguesa (solo visible en móvil) -->
+                    <li class="lock-menu-item d-md-none">
+                        <a href="login.php" title="Acceso administrativo">
+                            <i class="fas fa-lock"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- end of nav-collapse -->
+
+
+            <div class="bottom-border"></div>
+        </div><!-- end of container -->
+    </nav>
+</header>
+
+
         <!-- end of header -->
  
         <!-- start of hero -->
@@ -217,13 +230,14 @@
                         <div class="tabs-site-button">
                             <div class="event-tabs">
                                 <div class="row">
-                                    <div class="col-md-8 col-md-offset-3 col-sm-11 col-sm-offset-1 col-xs-10 col-xs-offset-2">
-                                        <ul class="nav nav-tabs">
-                                            <li class="event-content"><a data-toggle="tab" href="#tyre">Cena</a></li>
-                                            <li class="event-content"><a data-toggle="tab" href="#car-1">Brindis</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+    <div class="col-xs-12 text-center">
+        <ul class="nav nav-tabs" style="display: inline-block; float: none;">
+            <li class="event-content"><a data-toggle="tab" href="#tyre">Cena</a></li>
+            <li class="event-content"><a data-toggle="tab" href="#car-1">Brindis</a></li>
+        </ul>
+    </div>
+</div>
+
                                 <div class="col-md-12 col-12">
                                     <div class="tab-content">
                                         <div id="tyre" class="tab-pane active">
