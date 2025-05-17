@@ -190,6 +190,7 @@ if (!$result_resumen) {
 
     <table>
         <tr>
+            <th>Eliminar</th>
             <th>Nombre</th>
             <th>Teléfono</th>
             <th>Alimentación</th>
@@ -200,6 +201,11 @@ if (!$result_resumen) {
         </tr>
         <?php while ($row = $result_asistentes->fetch_assoc()): ?>
             <tr class="<?= $row['pagado'] ? 'fila-pagado' : '' ?>">
+                <td>
+                    <button class="eliminar-icono" data-nombre="<?= htmlspecialchars($row['nombre']) ?>" title="Eliminar">
+                        🗑️
+                    </button>
+                </td>
                 <td><?= htmlspecialchars($row['nombre']) ?></td>
                 <td><?= htmlspecialchars($row['telefono']) ?></td>
                 <td><?= htmlspecialchars($row['alimentacion']) ?></td>
@@ -208,8 +214,8 @@ if (!$result_resumen) {
                 <td>$<?= htmlspecialchars($row['valor_tarjeta']) ?></td>
                 <td>
                     <input type="checkbox" class="pagado-checkbox"
-                        data-nombre="<?= htmlspecialchars($row['nombre']) ?>"
-                        <?= $row['pagado'] ? 'checked' : '' ?>>
+                           data-nombre="<?= htmlspecialchars($row['nombre']) ?>"
+                           <?= $row['pagado'] ? 'checked' : '' ?>>
                 </td>
             </tr>
         <?php endwhile; ?>
@@ -221,7 +227,59 @@ if (!$result_resumen) {
         </form>
     </div>
 
+    <!-- Modal -->
+    <div id="modal-confirmacion" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+        background-color:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:white; padding:20px; border-radius:8px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+            <p>¿Estás seguro de que deseas eliminar este asistente?</p>
+            <button id="confirmar-eliminar" style="background-color:#dc3545; color:white; padding:10px 20px; border:none; border-radius:4px; margin-right:10px;">Sí, eliminar</button>
+            <button id="cancelar-eliminar" style="background-color:#6c757d; color:white; padding:10px 20px; border:none; border-radius:4px;">Cancelar</button>
+        </div>
+    </div>
+
     <script>
+        let nombreEliminar = '';
+        let filaEliminar = null;
+
+        document.querySelectorAll('.eliminar-icono').forEach(icono => {
+            icono.addEventListener('click', function () {
+                nombreEliminar = this.dataset.nombre;
+                filaEliminar = this.closest('tr');
+                document.getElementById('modal-confirmacion').style.display = 'flex';
+            });
+        });
+
+        document.getElementById('cancelar-eliminar').addEventListener('click', function () {
+            document.getElementById('modal-confirmacion').style.display = 'none';
+            nombreEliminar = '';
+            filaEliminar = null;
+        });
+
+        document.getElementById('confirmar-eliminar').addEventListener('click', function () {
+            fetch('eliminar_asistente.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `nombre=${encodeURIComponent(nombreEliminar)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === 'OK') {
+                    filaEliminar.remove();
+                } else {
+                    alert('Error al eliminar el asistente.');
+                }
+                document.getElementById('modal-confirmacion').style.display = 'none';
+            })
+            .catch(error => {
+                alert('Error en la solicitud');
+                console.error(error);
+                document.getElementById('modal-confirmacion').style.display = 'none';
+            });
+        });
+
+        // Checkbox pagado
         document.querySelectorAll('.pagado-checkbox').forEach(checkbox => {
             checkbox.addEventListener('change', function () {
                 const nombre = this.dataset.nombre;
@@ -238,9 +296,13 @@ if (!$result_resumen) {
                 .then(response => response.text())
                 .then(data => {
                     if (data.trim() === 'OK') {
-                        fila.classList.toggle('fila-pagado', this.checked);
+                        if (pagado) {
+                            fila.classList.add('fila-pagado');
+                        } else {
+                            fila.classList.remove('fila-pagado');
+                        }
                     } else {
-                        alert('Error al actualizar en la base de datos');
+                        alert('Error al actualizar el estado de pago.');
                     }
                 })
                 .catch(error => {

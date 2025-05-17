@@ -261,7 +261,7 @@
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div class="event-img">
-                                                                <img src="assets/images/imgCena.jpg" alt>
+                                                                <img src="assets/images/imgMia/imagenCena2.png" alt>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -632,9 +632,12 @@ document.getElementById("rsvp-form").addEventListener("submit", function(event) 
         </div>
     </div> <!-- end container -->
 </footer>
-<footer class ="fondofooter">
-    © SolBot - Diseño y Desarrollo Web
+<footer class="fondofooter">
+    <a href="https://solbot.com.ar" target="_blank" style="color: inherit; text-decoration: none; display: block;">
+        © SolBot - Diseño y Desarrollo Web
+    </a>
 </footer>
+
 
 
 <a href="https://wa.me/5493492690045" class="whatsapp-float" target="_blank" title="Escribime por WhatsApp">

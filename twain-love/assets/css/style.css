@@ -3106,6 +3106,9 @@ animation: spineer 2s infinite;
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.9);
     outline: none;
+    color: black;
+    font-weight: bold;
+
 }
 
 .form-control {
@@ -3117,7 +3120,7 @@ animation: spineer 2s infinite;
 select.form-control:not([size]):not([multiple]) {
     height: 50px;
     border-radius: 5px;
-    color: #fff;
+    color: black;
     font-size: 14px;
     -webkit-appearance:none;
     -ms-appearance:none;
@@ -3128,6 +3131,7 @@ select.form-control:not([size]):not([multiple]) {
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.9);
     outline: none;
+    font-weight: bold;
 }
 .rsvp-area form input:focus,
 .rsvp-area form textarea:focus{
@@ -4285,3 +4289,5 @@ option {
     padding: 15px 0; /* espacio interno arriba y abajo */
     font-family: sans-serif; /* opcional para mejor apariencia */
 }
+
+
