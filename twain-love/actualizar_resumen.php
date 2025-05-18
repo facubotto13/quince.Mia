@@ -11,6 +11,8 @@ require_once 'db.php';
 // Consulta para calcular los totales desde asistentes
 $sql = "SELECT
     COUNT(*) AS cantidad_total,
+    SUM(CASE WHEN edad = 'mayores' THEN 1 ELSE 0 END) AS cantidad_mayores,
+    SUM(CASE WHEN edad = 'menores' THEN 1 ELSE 0 END) AS cantidad_menores,
     SUM(CASE WHEN alimentacion = 'normal' THEN 1 ELSE 0 END) AS cantidad_normal,
     SUM(CASE WHEN alimentacion = 'vegetariano' THEN 1 ELSE 0 END) AS cantidad_vegetariano,
     SUM(CASE WHEN alimentacion = 'vegano' THEN 1 ELSE 0 END) AS cantidad_vegano,
@@ -19,6 +21,7 @@ $sql = "SELECT
     SUM(CASE WHEN asistencia = 'brindis' THEN 1 ELSE 0 END) AS cantidad_brindis,
     SUM(valor_tarjeta) AS suma_valores
 FROM asistentes";
+
 
 $result = $conn->query($sql);
 
@@ -33,17 +36,21 @@ $cantidad_brindis = $data['cantidad_brindis'];
 
 // Usamos INSERT ... ON DUPLICATE KEY UPDATE
 $sql_update = "INSERT INTO resumen_asistentes 
-    (cantidad_cena, cantidad_brindis, cantidad_total, suma_valores, cantidad_normal, cantidad_vegetariano, cantidad_vegano, cantidad_celiaco)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    (cantidad_cena, cantidad_brindis, cantidad_total, suma_valores, cantidad_normal, cantidad_vegetariano, cantidad_vegano, cantidad_celiaco, menores, mayores)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
     cantidad_cena = VALUES(cantidad_cena),
     cantidad_brindis = VALUES(cantidad_brindis),
     cantidad_total = VALUES(cantidad_total),
     suma_valores = VALUES(suma_valores),
+    menores = VALUES(menores),
+    mayores = VALUES(mayores),
     cantidad_normal = VALUES(cantidad_normal),
     cantidad_vegetariano = VALUES(cantidad_vegetariano),
     cantidad_vegano = VALUES(cantidad_vegano),
     cantidad_celiaco = VALUES(cantidad_celiaco)";
+
+
 
 $stmt = $conn->prepare($sql_update);
 
@@ -52,7 +59,7 @@ if (!$stmt) {
 }
 
 $stmt->bind_param(
-    "iiidiiii", 
+    "iiidiiiiii",  // Ahora son 10 tipos
     $data['cantidad_cena'], 
     $cantidad_brindis, 
     $data['cantidad_total'], 
@@ -60,8 +67,11 @@ $stmt->bind_param(
     $data['cantidad_normal'], 
     $data['cantidad_vegetariano'], 
     $data['cantidad_vegano'], 
-    $data['cantidad_celiaco']
+    $data['cantidad_celiaco'],
+    $data['cantidad_menores'], 
+    $data['cantidad_mayores']
 );
+
 
 if ($stmt->execute()) {
     header("Location: bienvenida.php");

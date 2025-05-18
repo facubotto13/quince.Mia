@@ -160,6 +160,8 @@ if (!$result_resumen) {
                 <th>Brindis</th>
                 <th>Total</th>
                 <th>Suma Valores</th>
+                <th>Mayores</th>
+                <th>Menores</th>
                 <th>Normal</th>
                 <th>Vegetariana</th>
                 <th>Vegano</th>
@@ -170,6 +172,8 @@ if (!$result_resumen) {
                 <td><?= $rowResumen['cantidad_brindis'] ?></td>
                 <td><?= $rowResumen['cantidad_total'] ?></td>
                 <td>$<?= $rowResumen['suma_valores'] ?></td>
+                <td><?= $rowResumen['mayores'] ?></td>
+                <td><?= $rowResumen['menores'] ?></td>
                 <td><?= $rowResumen['cantidad_normal'] ?></td>
                 <td><?= $rowResumen['cantidad_vegetariano'] ?></td>
                 <td><?= $rowResumen['cantidad_vegano'] ?></td>
