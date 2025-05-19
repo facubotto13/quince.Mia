@@ -11,8 +11,8 @@ require_once 'db.php';
 // Consulta para calcular los totales desde asistentes
 $sql = "SELECT
     COUNT(*) AS cantidad_total,
-    SUM(CASE WHEN edad = 'mayores' THEN 1 ELSE 0 END) AS cantidad_mayores,
-    SUM(CASE WHEN edad = 'menores' THEN 1 ELSE 0 END) AS cantidad_menores,
+    SUM(CASE WHEN edad = 'mayor' THEN 1 ELSE 0 END) AS cantidad_mayores,
+    SUM(CASE WHEN edad = 'menor' THEN 1 ELSE 0 END) AS cantidad_menores,
     SUM(CASE WHEN alimentacion = 'normal' THEN 1 ELSE 0 END) AS cantidad_normal,
     SUM(CASE WHEN alimentacion = 'vegetariano' THEN 1 ELSE 0 END) AS cantidad_vegetariano,
     SUM(CASE WHEN alimentacion = 'vegano' THEN 1 ELSE 0 END) AS cantidad_vegano,

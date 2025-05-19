@@ -2,8 +2,8 @@
 session_start();
 
 // Datos fijos para un solo usuario
-$usuario_valido = 'admin';
-$contrasena_valida = '1234';
+$usuario_valido = 'flosano';
+$contrasena_valida = 'marchini2025';
 
 if ($_POST['usuario'] === $usuario_valido && $_POST['contrasena'] === $contrasena_valida) {
     $_SESSION['logueado'] = true;
