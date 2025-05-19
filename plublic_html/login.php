@@ -93,7 +93,7 @@ if (isset($_SESSION['logueado']) && $_SESSION['logueado'] === true) {
     </form>
 
     <!-- Botón Volver -->
-    <form action="./QuinceMia.php" method="get">
+    <form action="./index.php" method="get">
       <button type="submit" class="volver-btn">Volver</button>
     </form>
   </div>

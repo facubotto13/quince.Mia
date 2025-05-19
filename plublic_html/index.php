@@ -70,13 +70,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 <h1 class="site-logo">
-                    <a class="navbar-brand" href="QuinceMia.php">Mia Elizabeth</a>
+                    <a class="navbar-brand" href="index.php">Mia Elizabeth</a>
                 </h1>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
                 <button class="close-navbar"><i class="ti-close"></i></button>
                 <ul class="nav navbar-nav">
-                    <li class="current-menu-item"><a href="QuinceMia.php">Inicio</a></li>
+                    <li class="current-menu-item"><a href="index.php">Inicio</a></li>
                     <li><a href="#event">Evento</a></li>
                     <li><a href="#rsvp">Asistencia</a></li>
                     
