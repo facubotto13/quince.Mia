@@ -1712,6 +1712,53 @@ div#preloader {
   margin: 0 13px;
 }
 
+.slide-content {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(133,170,186,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+}
+
+/* Estilo base: notebooks y pantallas grandes */
+.slide-content {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: rgba(133,170,186,0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+}
+
+/* Tablets */
+@media (max-width: 991px) {
+  .slide-content {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 767px) {
+  .slide-content {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+
+
 /*--------------------------------------------------------------
     hero style 1
 --------------------------------------------------------------*/
@@ -2263,6 +2310,13 @@ couple-area end
     .count-down-section #clock .box>div {
         font-size: 40px;
         line-height: 1.3em;
+    }
+}
+
+@media (max-width: 991px) {
+    .count-down-area {
+        background-attachment: scroll;
+        background-position: center center;
     }
 }
 
@@ -3025,6 +3079,14 @@ animation: spineer 2s infinite;
     font-size: 15px;
   }
 }
+
+@media (max-width: 768px) {
+  .rsvp-area,
+  #confirmation {
+    background-attachment: scroll !important;
+  }
+}
+
 
 .validate-rsvp-form #success {
   background-color: #649e93;

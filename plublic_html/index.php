@@ -249,7 +249,8 @@
                                                                 <h3>Cena</h3>
                                                                 <span>📅 <b>Sábado, 26 de Julio del 2025</b></span><br>
                                                                 <span>⏰ <b>20:30hs. - 05:00hs.</b></span><br>
-                                                                <span>📍 <b>Av. Brasil esquina España, Rafaela - Santa Fe</b></span>
+                                                                <span>📍 <b>Av. Brasil esquina España, Rafaela - Santa Fe</b></span><br>
+                                                                <span>💵 <b>Valor: $62.000 (mayores) / $31.000 (menores de 3 a 12 años)</b></span>
                                                                 <p>La fiesta se llevará a cabo en el Salón Desiderios, ubicado en Av. Brasil esquina España, Rafaela. El ingreso será exclusivamente por Calle España, por lo que se recomienda dirigirse directamente a esa entrada. Es importante <strong>ser puntual</strong>, ya que la fiesta comenzará a la hora establecida y no queremos que nadie se pierda ni un solo momento de esta gran noche.</p>
                                                                 <div class="btn">
                                                                     <a class="popup-gmaps" href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d358.54711826362717!2d-61.47479025417939!3d-31.245813481954535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95caae5bb82fb4a1%3A0xe43c91c875c995e0!2sSalon%20de%20eventos%20Desiderio&#39;s!5e0!3m2!1ses-419!2sar!4v1742831155275!5m2!1ses-419!2sar" target="_blank">
@@ -282,7 +283,8 @@
                                                                 <h3>Brindis</h3>
                                                                 <span>📅 <b>Sábado, 26 de Julio del 2025</b></span><br>
                                                                 <span>⏰ <b>23:55hs. - 05:00hs.</b></span><br>
-                                                                <span>📍 <b>Av. Brasil esquina España, Rafaela - Santa Fe</b></span>
+                                                                <span>📍 <b>Av. Brasil esquina España, Rafaela - Santa Fe</b></span><br>
+                                                                <span>💵 <b>Valor: $31.000</b></span>
                                                                 <p>La fiesta se llevará a cabo en el Salón Desiderios, ubicado en Av. Brasil esquina España, Rafaela. El ingreso será exclusivamente por Calle España, por lo que se recomienda dirigirse directamente a esa entrada. Es importante <strong>ser puntual</strong>, ya que la fiesta comenzará a la hora establecida y no queremos que nadie se pierda ni un solo momento de esta gran noche.</p>
                                                                 <div class="btn">
                                                                     <a class="popup-gmaps" href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d358.54711826362717!2d-61.47479025417939!3d-31.245813481954535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95caae5bb82fb4a1%3A0xe43c91c875c995e0!2sSalon%20de%20eventos%20Desiderio&#39;s!5e0!3m2!1ses-419!2sar!4v1742831155275!5m2!1ses-419!2sar" target="_blank">
