@@ -15,16 +15,18 @@ if (isset($_GET['buscar']) && !empty(trim($_GET['buscar']))) {
     $nombre_busqueda = trim($_GET['buscar']);
     $sql_asistentes = "SELECT nombre, telefono, alimentacion, edad, asistencia, valor_tarjeta, pagado
                        FROM asistentes 
-                       WHERE nombre LIKE ?";
+                       WHERE nombre LIKE ?
+                       ORDER BY nombre ASC";  // <-- agregar ORDER BY también aquí para consistencia
     $stmt = $conn->prepare($sql_asistentes);
     $like_param = '%' . $nombre_busqueda . '%';
     $stmt->bind_param("s", $like_param);
     $stmt->execute();
     $result_asistentes = $stmt->get_result();
 } else {
-    $sql_asistentes = "SELECT nombre, telefono, alimentacion, edad, asistencia, valor_tarjeta, pagado FROM asistentes";
+    $sql_asistentes = "SELECT nombre, telefono, alimentacion, edad, asistencia, valor_tarjeta, pagado FROM asistentes ORDER BY nombre ASC";
     $result_asistentes = $conn->query($sql_asistentes);
 }
+
 
 if (!$result_asistentes) {
     die("Error en la consulta asistentes: " . $conn->error);
@@ -42,7 +44,7 @@ if (!$result_resumen) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel de Administración</title>
+    <title>Panel de Administracións</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -74,6 +76,8 @@ if (!$result_resumen) {
         }
 
         th {
+           position: sticky;
+           top: 0;
             background-color: #007bff;
             color: white;
         }
@@ -142,8 +146,27 @@ if (!$result_resumen) {
         .cerrar-sesion button:hover {
             background-color: #c82333;
         }
+        .tabla-scrollable {
+    max-height: 480px;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Asegura que la tabla use layout fijo para sticky */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+
     </style>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+
 <body>
     <h1>Bienvenido al Panel de Administración</h1>
 
@@ -190,40 +213,48 @@ if (!$result_resumen) {
         <input type="text" name="buscar" placeholder="Buscar por nombre" value="<?= htmlspecialchars($nombre_busqueda) ?>">
         <button type="submit">Buscar</button>
         <a href="bienvenida.php"><button type="button">Limpiar</button></a>
+        <button onclick="generarPDF()">Descargar PDF</button>
+
     </form>
 
-    <table>
-        <tr>
-            <th>Eliminar</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Alimentación</th>
-            <th>Edad</th>
-            <th>Asistencia</th>
-            <th>Valor Tarjeta</th>
-            <th>Pagado</th>
-        </tr>
-        <?php while ($row = $result_asistentes->fetch_assoc()): ?>
-            <tr class="<?= $row['pagado'] ? 'fila-pagado' : '' ?>">
-                <td>
-                    <button class="eliminar-icono" data-nombre="<?= htmlspecialchars($row['nombre']) ?>" title="Eliminar">
-                        🗑️
-                    </button>
-                </td>
-                <td><?= htmlspecialchars($row['nombre']) ?></td>
-                <td><?= htmlspecialchars($row['telefono']) ?></td>
-                <td><?= htmlspecialchars($row['alimentacion']) ?></td>
-                <td><?= htmlspecialchars($row['edad']) ?></td>
-                <td><?= htmlspecialchars($row['asistencia']) ?></td>
-                <td>$<?= htmlspecialchars($row['valor_tarjeta']) ?></td>
-                <td>
-                    <input type="checkbox" class="pagado-checkbox"
-                           data-nombre="<?= htmlspecialchars($row['nombre']) ?>"
-                           <?= $row['pagado'] ? 'checked' : '' ?>>
-                </td>
+    <div class="tabla-scrollable">
+    <table id="tablaAsistentes">
+        <thead>
+            <tr>
+                <th>Eliminar</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Alimentación</th>
+                <th>Edad</th>
+                <th>Asistencia</th>
+                <th>Valor Tarjeta</th>
+                <th>Pagado</th>
             </tr>
-        <?php endwhile; ?>
+        </thead>
+        <tbody>
+            <?php while ($row = $result_asistentes->fetch_assoc()): ?>
+                <tr class="<?= $row['pagado'] ? 'fila-pagado' : '' ?>">
+                    <td>
+                        <button class="eliminar-icono" data-nombre="<?= htmlspecialchars($row['nombre']) ?>" title="Eliminar">
+                            🗑️
+                        </button>
+                    </td>
+                    <td><?= htmlspecialchars($row['nombre']) ?></td>
+                    <td><?= htmlspecialchars($row['telefono']) ?></td>
+                    <td><?= htmlspecialchars($row['alimentacion']) ?></td>
+                    <td><?= htmlspecialchars($row['edad']) ?></td>
+                    <td><?= htmlspecialchars($row['asistencia']) ?></td>
+                    <td>$<?= htmlspecialchars($row['valor_tarjeta']) ?></td>
+                    <td>
+                        <input type="checkbox" class="pagado-checkbox"
+                               data-nombre="<?= htmlspecialchars($row['nombre']) ?>"
+                               <?= $row['pagado'] ? 'checked' : '' ?>>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
     </table>
+</div>
 
     <div class="cerrar-sesion">
         <form action="logout.php" method="POST">
@@ -242,79 +273,143 @@ if (!$result_resumen) {
     </div>
 
     <script>
-        let nombreEliminar = '';
-        let filaEliminar = null;
+    let nombreEliminar = '';
+    let filaEliminar = null;
 
-        document.querySelectorAll('.eliminar-icono').forEach(icono => {
-            icono.addEventListener('click', function () {
-                nombreEliminar = this.dataset.nombre;
-                filaEliminar = this.closest('tr');
-                document.getElementById('modal-confirmacion').style.display = 'flex';
-            });
+    document.querySelectorAll('.eliminar-icono').forEach(icono => {
+        icono.addEventListener('click', function () {
+            nombreEliminar = this.dataset.nombre;
+            filaEliminar = this.closest('tr');
+            document.getElementById('modal-confirmacion').style.display = 'flex';
         });
+    });
 
-        document.getElementById('cancelar-eliminar').addEventListener('click', function () {
+    document.getElementById('cancelar-eliminar').addEventListener('click', function () {
+        document.getElementById('modal-confirmacion').style.display = 'none';
+        nombreEliminar = '';
+        filaEliminar = null;
+    });
+
+    document.getElementById('confirmar-eliminar').addEventListener('click', function () {
+        fetch('eliminar_asistente.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `nombre=${encodeURIComponent(nombreEliminar)}`
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data.trim() === 'OK') {
+                filaEliminar.remove();
+            } else {
+                alert('Error al eliminar el asistente.');
+            }
             document.getElementById('modal-confirmacion').style.display = 'none';
-            nombreEliminar = '';
-            filaEliminar = null;
+        })
+        .catch(error => {
+            alert('Error en la solicitud');
+            console.error(error);
+            document.getElementById('modal-confirmacion').style.display = 'none';
         });
+    });
 
-        document.getElementById('confirmar-eliminar').addEventListener('click', function () {
-            fetch('eliminar_asistente.php', {
+    // Checkbox pagado
+    document.querySelectorAll('.pagado-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            const nombre = this.dataset.nombre;
+            const pagado = this.checked ? 1 : 0;
+            const fila = this.closest('tr');
+
+            fetch('actualizar_pagado.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: `nombre=${encodeURIComponent(nombreEliminar)}`
+                body: `nombre=${encodeURIComponent(nombre)}&pagado=${pagado}`
             })
             .then(response => response.text())
             .then(data => {
                 if (data.trim() === 'OK') {
-                    filaEliminar.remove();
+                    if (pagado) {
+                        fila.classList.add('fila-pagado');
+                    } else {
+                        fila.classList.remove('fila-pagado');
+                    }
                 } else {
-                    alert('Error al eliminar el asistente.');
+                    alert('Error al actualizar el estado de pago.');
+                    // Revertir checkbox si falla
+                    this.checked = !this.checked;
                 }
-                document.getElementById('modal-confirmacion').style.display = 'none';
             })
             .catch(error => {
                 alert('Error en la solicitud');
                 console.error(error);
-                document.getElementById('modal-confirmacion').style.display = 'none';
+                // Revertir checkbox si falla
+                this.checked = !this.checked;
             });
         });
+    });
 
-        // Checkbox pagado
-        document.querySelectorAll('.pagado-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                const nombre = this.dataset.nombre;
-                const pagado = this.checked ? 1 : 0;
-                const fila = this.closest('tr');
+</script>
 
-                fetch('actualizar_pagado.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `nombre=${encodeURIComponent(nombre)}&pagado=${pagado}`
-                })
-                .then(response => response.text())
-                .then(data => {
-                    if (data.trim() === 'OK') {
-                        if (pagado) {
-                            fila.classList.add('fila-pagado');
-                        } else {
-                            fila.classList.remove('fila-pagado');
-                        }
-                    } else {
-                        alert('Error al actualizar el estado de pago.');
-                    }
-                })
-                .catch(error => {
-                    alert('Error en la solicitud');
-                    console.error(error);
-                });
-            });
-        });
-    </script>
+<script>
+async function generarPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('landscape', 'pt', 'a4');
+
+    const table = document.getElementById('tablaAsistentes');
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+    let totalAsistentes = 0;
+    let totalPagados = 0;
+
+    const data = rows.map(row => {
+        const cells = row.querySelectorAll('td');
+        const pagado = cells[7]?.querySelector('input')?.checked ? "Sí" : "No";
+
+        totalAsistentes++;
+        if (pagado === "Sí") totalPagados++;
+
+        return [
+            // Omitimos el botón "Eliminar"
+            cells[1]?.innerText.trim(),
+            cells[2]?.innerText.trim(),
+            cells[3]?.innerText.trim(),
+            cells[4]?.innerText.trim(),
+            cells[5]?.innerText.trim(),
+            cells[6]?.innerText.trim(),
+            pagado
+        ];
+    });
+
+    doc.text("Listado de Asistentes", 40, 40);
+    doc.autoTable({
+        head: [[
+            'Nombre',
+            'Teléfono',
+            'Alimentación',
+            'Edad',
+            'Asistencia',
+            'Valor Tarjeta',
+            'Pagado'
+        ]],
+        body: data,
+        startY: 60,
+        styles: { fontSize: 10 }
+    });
+
+    const finalY = doc.lastAutoTable.finalY || 60;
+    doc.setFontSize(12);
+    doc.text(`Total de asistentes: ${totalAsistentes}`, 40, finalY + 30);
+    doc.text(`Total que pagaron: ${totalPagados}`, 40, finalY + 50);
+
+    doc.save("ListadoAsistentes.pdf");
+}
+</script>
+
+
+
+
 </body>
 </html>
